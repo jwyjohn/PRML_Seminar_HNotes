@@ -1,0 +1,72 @@
+%!TEX program = xelatex
+%!BIB program = bibtex
+
+\documentclass[cn,black,12pt,normal]{elegantnote}
+\usepackage{float}
+\usepackage{hyperref}
+
+\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
+
+\title{PRML读书笔记手稿整理}
+\author{PRML讨论班}
+\institute{Tongji University}
+\version{0.01}
+\date{\zhtoday}
+
+\begin{document}
+
+%\maketitle
+%\tableofcontents
+%\newpage
+
+\section{变分法}
+
+$F[y]$泛函。
+
+% 注：泛函（functional）通常是指\textbf{定义域为函数集}，而\textbf{值域为实数或者复数}的\textbf{映射}，换句话说，它是从函数组成的一个向量空间到标量域的映射，它的输入为函数，而输出为标量。
+
+\begin{equation*}
+    F(y(x)+\epsilon \eta(x) ) = F(y(x)) + \eta \int \frac{\partial F}{\partial y(x)}\eta(x) dx + O(\epsilon^2)
+\end{equation*}
+
+\begin{equation*}
+    \int\limits_{x}^{}  \frac{\partial F}{\partial y(x)}\eta(x) dx = 0
+\end{equation*}
+
+\section{高斯分布的矩}
+
+\paragraph{一阶原点矩} 
+
+\begin{align*}
+E(x) & = \frac{1}{(2\pi )^{\frac{D }{2} }} \frac{1}{\left | \Sigma  \right |^{\frac{1}{2} }  }\int 
+\exp\left \{ -\frac{1}{2} (x-\mu )^T\Sigma^{-1}(x-\mu) \right \}x dx  
+\end{align*}
+做换元$z = x - \mu$ 后，有：
+\begin{align*}
+E(x) & = \frac{1}{(2\pi )^{\frac{D }{2} }} \frac{1}{\left | \Sigma  \right |^{\frac{1}{2} }  }\int 
+\exp\left \{ -\frac{1}{2} z^T\Sigma^{-1}z \right \}(z+\mu) dz  
+\end{align*}
+而由对称性：
+\begin{align*}
+\int \exp\left \{ -\frac{1}{2} z^T\Sigma^{-1}z \right \}(z) dz = 0
+\end{align*}
+故有：
+\begin{align*}
+E(x) & = \frac{1}{(2\pi )^{\frac{D }{2} }} \frac{1}{\left | \Sigma  \right |^{\frac{1}{2} }  }\int 
+\exp\left \{ -\frac{1}{2} z^T\Sigma^{-1}z \right \}(z+\mu) dz = \mu
+\end{align*}
+
+\paragraph{二阶原点矩}
+类似地，做换元$z = x - \mu$ 后，有：
+\begin{align*}
+E(x) & = \frac{1}{(2\pi )^{\frac{D }{2} }} \frac{1}{\left | \Sigma  \right |^{\frac{1}{2} }  }\int 
+\exp\left \{ -\frac{1}{2} z^T\Sigma^{-1}z \right \}(z+\mu)(z+\mu)^T dz  
+\end{align*}
+将$(z+\mu)(z+\mu)$展开，考虑对称性，有：
+\begin{align*}
+E(x) & = \mu\mu^T \\ & + \frac{1}{(2\pi )^{\frac{D }{2} }} \frac{1}{\left | \Sigma  \right |^{\frac{1}{2} }  }\int 
+\exp\left \{ -\frac{1}{2} z^T\Sigma^{-1}z \right \} zz^T dz  
+\end{align*}
+考虑$I = \frac{1}{(2\pi )^{\frac{D }{2} }} \frac{1}{\left | \Sigma  \right |^{\frac{1}{2} }  }\int 
+\exp\left \{ -\frac{1}{2} z^T\Sigma^{-1}z \right \} zz^T dz$
+\end{document}
