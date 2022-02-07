@@ -19,6 +19,10 @@
 %\tableofcontents
 %\newpage
 
+\section*{写在前面}
+
+需熟悉常见的矩阵微积分表示方法及其具体含义。
+
 \section{变分法}
 
 $F[y]$泛函。
@@ -35,38 +39,91 @@ $F[y]$泛函。
 
 \section{高斯分布的矩}
 
-\paragraph{一阶原点矩} 
+\paragraph{一阶原点矩}
 
 \begin{align*}
-E(x) & = \frac{1}{(2\pi )^{\frac{D }{2} }} \frac{1}{\left | \Sigma  \right |^{\frac{1}{2} }  }\int 
-\exp\left \{ -\frac{1}{2} (x-\mu )^T\Sigma^{-1}(x-\mu) \right \}x dx  
+    E(x) & = \frac{1}{(2\pi )^{\frac{D }{2} }} \frac{1}{\left | \Sigma  \right |^{\frac{1}{2} }  }\int
+    \exp\left \{ -\frac{1}{2} (x-\mu )^T\Sigma^{-1}(x-\mu) \right \}x dx
 \end{align*}
 做换元$z = x - \mu$ 后，有：
 \begin{align*}
-E(x) & = \frac{1}{(2\pi )^{\frac{D }{2} }} \frac{1}{\left | \Sigma  \right |^{\frac{1}{2} }  }\int 
-\exp\left \{ -\frac{1}{2} z^T\Sigma^{-1}z \right \}(z+\mu) dz  
+    E(x) & = \frac{1}{(2\pi )^{\frac{D }{2} }} \frac{1}{\left | \Sigma  \right |^{\frac{1}{2} }  }\int
+    \exp\left \{ -\frac{1}{2} z^T\Sigma^{-1}z \right \}(z+\mu) dz
 \end{align*}
 而由对称性：
 \begin{align*}
-\int \exp\left \{ -\frac{1}{2} z^T\Sigma^{-1}z \right \}(z) dz = 0
+    \int \exp\left \{ -\frac{1}{2} z^T\Sigma^{-1}z \right \}(z) dz = 0
 \end{align*}
 故有：
 \begin{align*}
-E(x) & = \frac{1}{(2\pi )^{\frac{D }{2} }} \frac{1}{\left | \Sigma  \right |^{\frac{1}{2} }  }\int 
-\exp\left \{ -\frac{1}{2} z^T\Sigma^{-1}z \right \}(z+\mu) dz = \mu
+    E(x) & = \frac{1}{(2\pi )^{\frac{D }{2} }} \frac{1}{\left | \Sigma  \right |^{\frac{1}{2} }  }\int
+    \exp\left \{ -\frac{1}{2} z^T\Sigma^{-1}z \right \}(z+\mu) dz = \mu
 \end{align*}
 
 \paragraph{二阶原点矩}
 类似地，做换元$z = x - \mu$ 后，有：
 \begin{align*}
-E(x) & = \frac{1}{(2\pi )^{\frac{D }{2} }} \frac{1}{\left | \Sigma  \right |^{\frac{1}{2} }  }\int 
-\exp\left \{ -\frac{1}{2} z^T\Sigma^{-1}z \right \}(z+\mu)(z+\mu)^T dz  
+    E(x) & = \frac{1}{(2\pi )^{\frac{D }{2} }} \frac{1}{\left | \Sigma  \right |^{\frac{1}{2} }  }\int
+    \exp\left \{ -\frac{1}{2} z^T\Sigma^{-1}z \right \}(z+\mu)(z+\mu)^T dz
 \end{align*}
-将$(z+\mu)(z+\mu)$展开，考虑对称性，有：
+将$(z+\mu)(z+\mu)^T$展开，考虑对称性，有：
 \begin{align*}
-E(x) & = \mu\mu^T \\ & + \frac{1}{(2\pi )^{\frac{D }{2} }} \frac{1}{\left | \Sigma  \right |^{\frac{1}{2} }  }\int 
-\exp\left \{ -\frac{1}{2} z^T\Sigma^{-1}z \right \} zz^T dz  
+    E(x) & = \mu\mu^T \\ & + \frac{1}{(2\pi )^{\frac{D }{2} }} \frac{1}{\left | \Sigma  \right |^{\frac{1}{2} }  }\int
+    \exp\left \{ -\frac{1}{2} z^T\Sigma^{-1}z \right \} zz^T dz
 \end{align*}
-考虑$I = \frac{1}{(2\pi )^{\frac{D }{2} }} \frac{1}{\left | \Sigma  \right |^{\frac{1}{2} }  }\int 
-\exp\left \{ -\frac{1}{2} z^T\Sigma^{-1}z \right \} zz^T dz$
+考虑$I = \frac{1}{(2\pi )^{\frac{D }{2} }} \frac{1}{\left | \Sigma  \right |^{\frac{1}{2} }  }\int
+    \exp\left \{ -\frac{1}{2} z^T\Sigma^{-1}z \right \} zz^T dz$
+又有：$z = U^{-1}y = \Sigma y_ju_j$，即$y=Uz$
+\begin{align*}
+    I & = \frac{1}{(2\pi )^{\frac{D }{2} }} \frac{1}{\left | \Sigma  \right |^{\frac{1}{2} }  }\sum_{i,j}u_iu_j^T \int 1 \cdot
+    \exp\left \{ -\sum_{k=1}^{D} \frac{y_k^2}{2\lambda_k} \right \} y_i y_j d\vec{y}
+\end{align*}
+再次利用对称性，当且仅当$i=j$时，有：
+\begin{align*}
+    \sum_{i,j}u_iu_j^T \int 1 \cdot
+    \exp\left \{ -\sum_{k=1}^{D} \frac{y_k^2}{2\lambda_k} \right \} y_i y_j d\vec{y} & \neq 0
+\end{align*}
+所以：
+\begin{align*}
+    I & = \sum_{i=1}{D}u_iu_i^T \frac{1}{(2\pi )^{\frac{D }{2} }} \frac{1}{\left | \Sigma  \right |^{\frac{1}{2} }  } \int 1 \cdot
+    \exp\left \{ -\sum_{k=1}^{D} \frac{y_k^2}{2\lambda_k} \right \} y_i y_j d\vec{y}                                               \\ & = \sum_{i=1}{D}u_iu_i^T \lambda_i = \Sigma
+\end{align*}
+
+\paragraph{二阶中心矩}
+\begin{align*}
+    \text{Var}(x) & = E((X-E(X))(X-E(X))^T)
+    \\ & = E(xx^T) - E(x)(E(x))^T = \Sigma
+\end{align*}
+
+\section{条件高斯分布}
+
+\paragraph{划分向量}
+\begin{align*}
+    \begin{bmatrix}
+        a_1    \\
+        \vdots \\
+        a_m    \\
+        b_1    \\
+        \vdots \\
+        b_n
+    \end{bmatrix} = \begin{bmatrix}
+                          a \\
+                          b
+                      \end{bmatrix},\; \mu = \begin{bmatrix}
+                                                  \mu_a \\
+                                                  \mu_b
+                                              \end{bmatrix},\; \Sigma = \begin{bmatrix}
+                                                                             \Sigma_{aa} & \Sigma_{ab} \\
+                                                                             \Sigma_{ba} & \Sigma_{bb}
+                                                                         \end{bmatrix}
+\end{align*}
+
+\paragraph{精度矩阵}
+\begin{align*}
+    \Lambda & = \Sigma^{-1} = \begin{bmatrix}
+                                  \Lambda_{aa} & \Lambda_{ab} \\
+                                  \Lambda_{ba} & \Lambda_{bb}
+                              \end{bmatrix}
+\end{align*}
+值得注意的是：$\Lambda_{ij}\neq\Sigma_{ij}$（分块的性质）
 \end{document}
