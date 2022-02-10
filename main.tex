@@ -221,8 +221,15 @@ $F[y]$泛函。
     \end{bmatrix}
 \end{align*}
 
+\section{边缘高斯分布}
+若联合分布$p(x_a,x_b)$是高斯分布，则$p(x_a| x_b)$也是高斯分布。现在讨论分布$p(x_a)=\int p(x_a,x_b) dx_b$，即边缘概率分布。
 
-
+在联合分布d.f.中选出关于$x_b$的项：
+\begin{align*}
+& -\frac{1}{2} x_b^T\Lambda_{bb}x_b+x_b^Tm\\
+= & -\frac{1}{2} (x_b-\Lambda_{bb}^{-1}m)^T\Lambda_{bb} + \frac{1}{2}m^T\Lambda_{bb}^{-1}m
+\end{align*}
+其中，$m = \Lambda_{bb}\mu_b - \Lambda_{ba}(x_a-\mu_a)$。（回忆：$\Lambda_{bb}$是精度矩阵中的分块）
 
 
 
